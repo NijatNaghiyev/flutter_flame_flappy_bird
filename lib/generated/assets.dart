@@ -5,16 +5,16 @@ class Assets {
   static const String audioCollision = 'collision.wav';
   static const String audioFly = 'fly.wav';
   static const String audioPoint = 'point.wav';
-  static const String fontsGame = 'Game.ttf';
+  static const String fontsGame = 'assets/images/Game.ttf';
   static const String imagesBackground = 'background.png';
   static const String imagesBirdDownflap = 'bird_downflap.png';
   static const String imagesBirdMidflap = 'bird_midflap.png';
   static const String imagesBirdUpflap = 'bird_upflap.png';
-  static const String imagesClouds = 'clouds.png';
-  static const String imagesGameover = 'gameover.png';
+  static const String imagesClouds = 'assets/images/clouds.png';
+  static const String imagesGameover = 'assets/images/gameover.png';
   static const String imagesGround = 'ground.png';
-  static const String imagesMenu = 'menu.jpg';
-  static const String imagesMessage = 'message.png';
+  static const String imagesMenu = 'assets/images/menu.jpg';
+  static const String imagesMessage = 'assets/images/message.png';
   static const String imagesPipe = 'pipe.png';
   static const String imagesPipeRotated = 'pipe_rotated.png';
 }

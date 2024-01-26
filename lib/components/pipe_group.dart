@@ -32,10 +32,22 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBird> {
   @override
   void update(double dt) {
     super.update(dt);
+
+    /// Move Pipe
     position.x -= Config.gameSpeed * dt;
 
+    /// Remove Pipe
     if (position.x < -30) {
       removeFromParent();
+    }
+
+    /// Game Over
+    if (game.isGameOver) {
+      /// Remove Pipe
+      removeFromParent();
+
+      /// Reset Game
+      game.isGameOver = false;
     }
   }
 }
