@@ -15,6 +15,9 @@ final class GameOverScreen extends StatelessWidget {
     /// Reset the bird position
     game.bird.reset();
 
+    /// Reset Score
+    game.score = 0;
+
     /// Restart the game when the restart button is pressed
     game.overlays.remove(ScreenName.gameOverScreen.name);
 
@@ -30,6 +33,16 @@ final class GameOverScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Text(
+            'Score: ${game.score}',
+            style: const TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Game',
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 20),
           Image.asset(Assets.imagesGameover),
           const SizedBox(height: 20),
           ElevatedButton(

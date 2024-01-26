@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter_flame_flappy_bird/enum/bird_movement.dart';
 import 'package:flutter_flame_flappy_bird/enum/screen_name.dart';
@@ -30,18 +31,24 @@ class Bird extends SpriteGroupComponent<BirdMovement>
         onComplete: () => current = BirdMovement.down,
       ),
     );
+
+    /// Play the sound
+    FlameAudio.play(Assets.audioFly);
   }
 
   /// When the bird collides with something, the game is over
   void gameOver() {
+    /// Play the sound
+    FlameAudio.play(Assets.audioCollision);
+
     /// Set the game over flag
     game.isGameOver = true;
 
-    /// Stop the game
-    gameRef.pauseEngine();
-
     /// Add the game over screen
     game.overlays.add(ScreenName.gameOverScreen.name);
+
+    /// Stop the game
+    gameRef.pauseEngine();
   }
 
   /// Reset the bird position
@@ -70,6 +77,12 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   @override
   void update(double dt) {
     position.y += Config.birdGravity * dt;
+
+    /// If the bird is out of the screen, the game is over
+    if (position.y < 1) {
+      gameOver();
+    }
+
     super.update(dt);
   }
 

@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter_flame_flappy_bird/components/pipe.dart';
 import 'package:flutter_flame_flappy_bird/enum/pipe_position.dart';
 import 'package:flutter_flame_flappy_bird/game/flappy_bird.dart';
 
 import '../game/configuration.dart';
+import '../generated/assets.dart';
 
 class PipeGroup extends PositionComponent with HasGameRef<FlappyBird> {
   PipeGroup();
@@ -17,7 +19,7 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBird> {
     position.x = gameRef.size.x;
 
     final heightWithoutGround = gameRef.size.y - Config.groundHeight;
-    final space = 110 + _randomNumber.nextDouble() * 100;
+    final space = 110 + _randomNumber.nextDouble() * 150;
     final centerOfPipes =
         space + _randomNumber.nextDouble() * (heightWithoutGround - space);
 
@@ -37,8 +39,14 @@ class PipeGroup extends PositionComponent with HasGameRef<FlappyBird> {
     position.x -= Config.gameSpeed * dt;
 
     /// Remove Pipe
-    if (position.x < -30) {
+    if (position.x < -10) {
       removeFromParent();
+
+      /// Play Audio
+      FlameAudio.play(Assets.audioPoint);
+
+      /// Add Score
+      game.score++;
     }
 
     /// Game Over
