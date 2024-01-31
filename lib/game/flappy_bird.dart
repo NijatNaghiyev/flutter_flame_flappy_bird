@@ -29,6 +29,7 @@ class FlappyBird extends FlameGame with TapDetector, HasCollisionDetection {
   /// Score
   int score = 0;
 
+  /// Init Score
   void initScore() {
     scoreText = TextComponent(
       text: 'Score: 0',
